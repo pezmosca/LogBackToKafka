@@ -1,0 +1,28 @@
+<configuration>
+<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+  <!-- lazy initialization: don't create the file until 1st write -->
+  <lazy>true</lazy>
+
+  <file>/data/data/com.example.toni.logstashexample/files/log3.txt</file>
+  <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+    <layout class="com.example.toni.logstashexample.MySampleLayout" />
+  </encoder>
+</appender>
+
+<root level="DEBUG">
+  <appender-ref ref="FILE" />
+
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+      <layout class="com.example.toni.logstashexample.MySampleLayout" />
+    </encoder>
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+
+</root>
+</configuration>
