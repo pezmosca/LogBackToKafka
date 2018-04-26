@@ -3,7 +3,7 @@
   <!-- lazy initialization: don't create the file until 1st write -->
   <lazy>true</lazy>
 
-  <file>/data/data/com.example.toni.logstashexample/files/log3.txt</file>
+  <file>/data/data/com.example.toni.logstashexample/files/log.txt</file>
   <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
     <layout class="com.example.toni.logstashexample.MySampleLayout" />
   </encoder>

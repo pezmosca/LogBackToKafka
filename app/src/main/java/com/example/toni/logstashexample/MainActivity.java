@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     String message = null;
     Gson gson = null;
-    Map<String, ArrayList<Map<String, String>>> logs = null;
+    Map<String, ArrayList<Map<String, Object>>> logs = null;
     File file = null;
     Button button;
     EditText editText;
@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
 
-        String path = getApplicationContext().getFilesDir() + "/" + "log3.txt";
+        String path = getApplicationContext().getFilesDir() + "/" + "log.txt";
         file = new File(path);
 
         gson = new Gson();
         logs = new HashMap<>();
-        ArrayList<Map<String, String>> values = new ArrayList<>();
+        ArrayList<Map<String, Object>> values = new ArrayList<>();
 
 
         try {
@@ -87,8 +87,14 @@ public class MainActivity extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             while ((line = reader.readLine()) != null) {
-                Map<String, String> value = new HashMap<>();
-                value.put("value", line);
+                Map<String, Object> value = new HashMap<>();
+                Gson gson1 = new Gson();
+                Object json = gson1.fromJson(line, Object.class);
+
+                value.put("value", json);
+
+                Log.d("POST", json.toString());
+
                 values.add(value);
 
             }

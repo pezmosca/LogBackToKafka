@@ -27,11 +27,13 @@ public class YourOwnSender implements ReportSender{
     public void send(@NonNull Context context, @NonNull CrashReportData errorContent) throws ReportSenderException {
 
         Gson gson = new Gson();
-        Map<String, ArrayList<Map<String, String>>> logs = new HashMap<>();
-        ArrayList<Map<String, String>> values = new ArrayList<>();
-        Map<String, String> value = new HashMap<>();
+        Map<String, ArrayList<Map<String, Object>>> logs = new HashMap<>();
+        ArrayList<Map<String, Object>> values = new ArrayList<>();
+        Map<String, Object> value = new HashMap<>();
+
         try {
-            value.put("value", errorContent.toJSON());
+            Object json = gson.fromJson(errorContent.toJSON(), Object.class);
+            value.put("value", json);
         } catch (JSONException e) {
             e.printStackTrace();
         }
