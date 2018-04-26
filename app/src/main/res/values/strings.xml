@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LogstashExample</string>
+    <string name="url_kafka">http://192.168.1.108:8082/topics/test</string>
 </resources>

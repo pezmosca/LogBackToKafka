@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     EditText editText;
     Logger logger;
+    Button button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logger = LoggerFactory.getLogger(MainActivity.class);
-        /*logger.debug("HELLO5");
-        logger.debug("HELLO6");
-        logger.debug("HELLO7");
-        logger.debug("a ver");*/
 
 
         editText = (EditText)findViewById(R.id.editText);
@@ -57,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 logger.debug(editText.getText().toString());
+            }
+        });
+
+        button2 = (Button)findViewById(R.id.button3);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = 5 / 0;
             }
         });
 
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         MediaType mediaType = MediaType.parse("application/vnd.kafka.json.v2+json");
         RequestBody body = RequestBody.create(mediaType, gson.toJson(logs));
         final Request request = new Request.Builder()
-                .url("http://example:8082/topics/test")
+                .url(getResources().getString(R.string.url_kafka))
                 .post(body)
                 .addHeader("Content-Type", "application/vnd.kafka.json.v2+json")
                 .addHeader("Accept", "application/json")
@@ -121,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 file.delete();
             }
         });
-
-
 
     }
 
